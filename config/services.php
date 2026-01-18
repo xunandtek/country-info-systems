@@ -29,5 +29,10 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    'restcountries' => [
+        'base_url' => env('REST_COUNTRIES_BASE_URL', 'https://restcountries.com/v3.1'),
+        'cache_ttl' => env('COUNTRY_API_CACHE_TTL', 86400),
+    ],
+
 
 ];
