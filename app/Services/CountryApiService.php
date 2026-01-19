@@ -61,12 +61,14 @@ class CountryApiService
     private function getJson(string $path): array
     {
         try {
-            $res = Http::retry(3, 200, function ($exception) {
+            $res = Http::withOptions(['verify' => false])
+                ->retry(3, 200, function ($exception) {
                     return $exception instanceof ConnectionException;
                 })
                 ->timeout(10)
                 ->acceptJson()
                 ->get($this->url($path));
+
 
             if (!$res->successful()) {
                 throw new RuntimeException("REST Countries API failed: {$res->status()}");
