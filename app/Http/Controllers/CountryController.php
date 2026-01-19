@@ -11,8 +11,9 @@ class CountryController extends Controller
 {
     public function index(Request $request)
     {
-        $q = $request->string('q')->toString();
-        $region = $request->string('region')->toString();
+        $q = (string) $request->input('q', '');
+        $region = (string) $request->input('region', '');
+
 
         $countries = Country::query()
             ->search($q)
